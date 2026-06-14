@@ -91,7 +91,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("/assets/mattmuellerhero.jpg") center/cover no-repeat;
+  background: url("/assets/wpbhero.png") center/cover no-repeat;
 }
 
 .hero::before {
