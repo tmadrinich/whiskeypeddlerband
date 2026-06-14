@@ -2,6 +2,9 @@
 // main.js – Header/Footer, Nav, Active Links, Fade, Carousel
 // =====================
 
+// Detect base path for GitHub Pages (e.g. /whiskeypeddlerband/) vs root
+const BASE = document.querySelector('base')?.href || '/';
+
 document.addEventListener("DOMContentLoaded", function () {
   // Fade in page
   document.body.classList.add("fade-in");
@@ -9,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------
   // Load Header
   // ---------------------
-  fetch("/partials/header.html")
+  fetch("partials/header.html")
     .then((res) => {
       if (!res.ok) throw new Error("Header not found");
       return res.text();
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------
   // Load Footer
   // ---------------------
-  fetch("/partials/footer.html")
+  fetch("partials/footer.html")
     .then((res) => {
       if (!res.ok) throw new Error("Footer not found");
       return res.text();
@@ -44,9 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function initNav() {
   const nav = document.querySelector(".main-nav");
   const toggle = document.querySelector(".nav-toggle");
-
   if (!nav || !toggle) return;
-
   toggle.addEventListener("click", () => {
     nav.classList.toggle("open");
   });
@@ -58,9 +59,7 @@ function initNav() {
 function highlightActiveLink() {
   const navLinks = document.querySelectorAll(".nav-links a, .main-nav a");
   let path = window.location.pathname.replace(/\/$/, "");
-
   if (path === "") path = "/";
-
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     if (href === path) {
@@ -73,20 +72,14 @@ function highlightActiveLink() {
 // Fade on Internal Link Click
 // =====================
 function initLinkFade() {
-  const internalLinks = document.querySelectorAll("a[href^='/'], a[href^='./']");
-
+  const internalLinks = document.querySelectorAll("a[href^='/'], a[href^='./'], a[href^='../']");
   internalLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
-
-      // Ignore external, anchor, or empty links
       if (!href || href.startsWith("http") || href.startsWith("#")) return;
-
       e.preventDefault();
-
       document.body.classList.remove("fade-in");
       document.body.style.opacity = 0;
-
       setTimeout(() => {
         window.location.href = href;
       }, 500);
@@ -100,11 +93,9 @@ function initLinkFade() {
 function initCarousel() {
   const track = document.querySelector(".carousel-track");
   if (!track) return;
-
   const slides = Array.from(track.children);
   const nextBtn = document.querySelector(".carousel-btn.next");
   const prevBtn = document.querySelector(".carousel-btn.prev");
-
   let index = 0;
 
   function updateCarousel() {
@@ -122,11 +113,9 @@ function initCarousel() {
   });
 
   let startX = 0;
-
   track.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   });
-
   track.addEventListener("touchend", (e) => {
     const diff = e.changedTouches[0].clientX - startX;
     if (diff > 50) prevBtn.click();
