@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matt Mueller | Contact</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/mattmuellerlogo.png">
+  <link rel="shortcut icon" type="image/png" href="/assets/mattmuellerlogo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous"
+  />
+
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    /* Thank you message styling */
+    #thank-you-message {
+      display: none;
+      text-align: center;
+      margin-top: 40px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      color: #5D72A2;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    form button {
+      display: block;
+      margin-top: 20px;
+      background-color: #5D72A2;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    form button:hover {
+      background-color: #4b5a90;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Header -->
+  <div id="site-header"></div>
+
+  <!-- Page Content -->
+  <section class="page-content">
+    <h1>Contact</h1>
+
+    <form id="contact-form">
+      <!-- StaticForms API Key -->
+      <input type="hidden" name="accessKey" value="sf_c1h9aam4hm7lgg5715g0i4i2">
+
+      <!-- Disable captcha -->
+      <input type="hidden" name="captcha" value="false">
+
+      <!-- Honeypot spam protection -->
+      <input type="text" name="honeypot" style="display:none">
+
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" required>
+      </label>
+
+      <label>
+        Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Thank you message -->
+    <div id="thank-you-message">
+      <p>Thank you for your message! We'll be in touch soon.</p>
+    </div>
+  </section>
+
+  <!-- Shared Footer -->
+  <div id="site-footer"></div>
+
+  <!-- Site Scripts -->
+  <script src="/js/main.js"></script>
+
+  <!-- Contact Form Script -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('thank-you-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch('https://api.staticforms.xyz/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        // Hide form
+        form.style.display = 'none';
+        // Show thank you
+        thankYou.style.display = 'block';
+      })
+      .catch(err => {
+        console.error('Form submission error:', err);
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>
+
+</body>
+</html>
