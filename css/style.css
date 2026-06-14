@@ -1,0 +1,521 @@
+/* =====================
+   GLOBAL
+===================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #000;
+  color: #C0C0C0;
+  line-height: 1.6;
+
+  /* Fade effect */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  /* Add space under fixed nav */
+  padding-top: 70px; /* match your nav height */
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =====================
+   HEADER / NAVIGATION
+===================== */
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;          /* added */
+  width: 100%;      /* added to span full viewport */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: #000;
+  border-bottom: 1px solid #222;
+  backdrop-filter: blur(6px);
+}
+
+
+.nav-logo img {
+  height: 52px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #C0C0C0; /* brand silver default */
+  transition: color 0.3s;
+}
+
+.nav-links a.active {
+  color: #5D72A2; /* brand blue */
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #C0C0C0;
+  cursor: pointer;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url("/assets/mattmuellerhero.jpg") center/cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.3); /* lighter overlay */
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.hero-content h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* =====================
+   HERO MUSIC LINKS (Font Awesome)
+===================== */
+.hero .music-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.hero .music-links i {
+  font-size: 64px;
+  color: #C0C0C0; /* brand silver */
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Subtle Glow Version */
+.hero .music-links .spotify-link:hover i {
+  color: #1DB954; /* Spotify green */
+  transform: scale(1.1);
+}
+
+.hero .music-links .apple-link:hover i {
+  color: #FA57C1; /* Apple Music pink/purple */
+  transform: scale(1.1);
+}
+
+.hero .music-links .youtube-link:hover i {
+  color: #FF0000; /* YouTube red */
+  transform: scale(1.1);
+}
+
+.hero .music-links .amazon-link:hover i {
+  color: #FF9900; /* Amazon orange */
+  transform: scale(1.1);
+}
+
+
+
+
+/* =====================
+   HOME SECTIONS
+===================== */
+.home-section {
+  padding: 60px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-section h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+/* =====================
+   INNER PAGES
+===================== */
+.page-content {
+  padding: 80px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-content h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.site-footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid #222;
+  font-size: 0.9rem;
+}
+
+.site-footer .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.site-footer .social-links i {
+  font-size: 28px;
+  color: #C0C0C0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-footer .social-links a:hover i {
+  color: #5D72A2; /* brand blue */
+  transform: scale(1.1);
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;                /* hide by default */
+    flex-direction: column;       /* stack items vertically */
+    position: absolute;           /* dropdown positioning */
+    top: 100%;                    /* directly below the nav bar */
+    right: 30px;                  /* align under hamburger (matches nav padding) */
+    background-color: #000;       /* same as nav background */
+    border: 1px solid #222;       /* optional thin border */
+    border-radius: 8px;           /* optional rounded edges */
+    padding: 10px 20px;           /* spacing inside menu */
+    width: auto;                  /* menu width fits content */
+    z-index: 1001;                /* above other content */
+  }
+
+  .main-nav.open .nav-links {
+    display: flex;                /* show menu when open */
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #C0C0C0;
+    cursor: pointer;
+    position: relative;           /* ensure z-index stacking works */
+  }
+
+  .hero-content h2 { font-size: 2.2rem; }
+  .hero .music-links i { font-size: 48px; }
+}
+
+
+/* =====================
+   BAND MEMBERS SECTION
+===================== */
+.band-members {
+  padding: 80px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  color: #C0C0C0;
+}
+
+.band-members h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.band-members p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: #C0C0C0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.band-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.band-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.band-member img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+/* =====================
+   Calendar Section Styling
+===================== */
+#calendar-section {
+  padding: 80px 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+  color: #C0C0C0;
+}
+
+#calendar-section h2 {
+  font-family: 'Oswald', sans-serif;
+  color: #5D72A2; /* Brand Blue */
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.event-card {
+  background: transparent; /* transparent background */
+  padding: 15px 0;
+  border-bottom: 1px solid #5D72A2; /* thin line divider in brand blue */
+  margin-bottom: 15px;
+}
+
+.event-title {
+  font-size: 1.4em;
+  color: #5D72A2; /* Brand Blue */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.event-location {
+  font-size: 1em;
+  color: #C0C0C0; /* Silver */
+  margin-bottom: 3px;
+}
+
+.event-time {
+  font-size: 0.95em;
+  color: #C0C0C0; /* Silver */
+}
+/* =====================
+   CONTACT FORM
+===================== */
+.page-content form {
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Labels stack text + input */
+.page-content form label {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  color: #C0C0C0;
+}
+
+/* Inputs & textarea */
+.page-content form input,
+.page-content form textarea {
+  margin-top: 8px;
+  padding: 12px 14px;
+  background-color: transparent;
+  border: 1px solid #222;
+  border-radius: 6px;
+  color: #C0C0C0;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+}
+
+/* Focus state */
+.page-content form input:focus,
+.page-content form textarea:focus {
+  outline: none;
+  border-color: #5D72A2; /* brand blue */
+}
+
+/* Textarea resize control */
+.page-content form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Submit button */
+.page-content form button {
+  margin-top: 10px;
+  padding: 14px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #5D72A2; /* brand blue */
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover */
+.page-content form button:hover {
+  background-color: #6f86b8;
+  transform: translateY(-1px);
+}
+/* Make Spotify embed match carousel width */
+.embed-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 900px;   /* same as carousel */
+  width: 100%;
+  margin: 40px auto;
+  border-radius: 12px; 
+  overflow: hidden;
+}
+
+.embed-wrapper iframe {
+  width: 100% !important;  /* force full width */
+  aspect-ratio: 16 / 9;     /* responsive height */
+  min-height: 352px;        /* optional: same as carousel images */
+  border: none;
+}
+
+
+@media (min-width: 900px) {
+  .embed-wrapper iframe {
+    width: 60%;
+  }
+}
+.carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #C0C0C0;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  color: #5D72A2;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* =====================
+   MEDIA PAGE HERO
+===================== */
+.hero-media {
+  background-image: url('/assets/hero2.jpg?v=2'); /* cache-busting */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-media::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.3); /* overlay same as home page */
+  z-index: 0;
+}
+
+.hero-media .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.hero-media .hero-content h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem; /* matches index.html */
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* improves visibility over image */
+}
+
+.hero-media .hero-content p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem; /* similar to home page subtitle */
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
+
