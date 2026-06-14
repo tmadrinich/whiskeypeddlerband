@@ -1,124 +1,56 @@
-// =====================
-// main.js – Header/Footer, Nav, Active Links, Fade, Carousel
-// =====================
+/* ===========================
+   HEADER: Scroll state
+   =========================== */
+(function () {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
 
-// Detect base path for GitHub Pages (e.g. /whiskeypeddlerband/) vs root
-const BASE = document.querySelector('base')?.href || '/';
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Fade in page
-  document.body.classList.add("fade-in");
-
-  // ---------------------
-  // Load Header
-  // ---------------------
-  fetch("partials/header.html")
-    .then((res) => {
-      if (!res.ok) throw new Error("Header not found");
-      return res.text();
-    })
-    .then((data) => {
-      document.getElementById("site-header").innerHTML = data;
-      initNav();
-      highlightActiveLink();
-      initLinkFade();
-    })
-    .catch((err) => console.error("Error loading header:", err));
-
-  // ---------------------
-  // Load Footer
-  // ---------------------
-  fetch("partials/footer.html")
-    .then((res) => {
-      if (!res.ok) throw new Error("Footer not found");
-      return res.text();
-    })
-    .then((data) => {
-      document.getElementById("site-footer").innerHTML = data;
-    })
-    .catch((err) => console.error("Error loading footer:", err));
-
-  initCarousel();
-});
-
-// =====================
-// Mobile Nav Toggle
-// =====================
-function initNav() {
-  const nav = document.querySelector(".main-nav");
-  const toggle = document.querySelector(".nav-toggle");
-  if (!nav || !toggle) return;
-  toggle.addEventListener("click", () => {
-    nav.classList.toggle("open");
-  });
-}
-
-// =====================
-// Highlight Active Page (Clean URLs)
-// =====================
-function highlightActiveLink() {
-  const navLinks = document.querySelectorAll(".nav-links a, .main-nav a");
-  let path = window.location.pathname.replace(/\/$/, "");
-  if (path === "") path = "/";
-  navLinks.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href === path) {
-      link.classList.add("active");
+  function onScroll() {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
     }
-  });
-}
-
-// =====================
-// Fade on Internal Link Click
-// =====================
-function initLinkFade() {
-  const internalLinks = document.querySelectorAll("a[href^='/'], a[href^='./'], a[href^='../']");
-  internalLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
-      if (!href || href.startsWith("http") || href.startsWith("#")) return;
-      e.preventDefault();
-      document.body.classList.remove("fade-in");
-      document.body.style.opacity = 0;
-      setTimeout(() => {
-        window.location.href = href;
-      }, 500);
-    });
-  });
-}
-
-// =====================
-// Carousel (Safe on pages without it)
-// =====================
-function initCarousel() {
-  const track = document.querySelector(".carousel-track");
-  if (!track) return;
-  const slides = Array.from(track.children);
-  const nextBtn = document.querySelector(".carousel-btn.next");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  let index = 0;
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${index * 100}%)`;
   }
 
-  nextBtn.addEventListener("click", () => {
-    index = (index + 1) % slides.length;
-    updateCarousel();
-  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load
+})();
 
-  prevBtn.addEventListener("click", () => {
-    index = (index - 1 + slides.length) % slides.length;
-    updateCarousel();
-  });
+/* ===========================
+   FOOTER: Dynamic year
+   =========================== */
+(function () {
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+})();
 
-  let startX = 0;
-  track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  track.addEventListener("touchend", (e) => {
-    const diff = e.changedTouches[0].clientX - startX;
-    if (diff > 50) prevBtn.click();
-    if (diff < -50) nextBtn.click();
-  });
-}
+/* ===========================
+   PARTIALS: Load header & footer
+   Reads data-partial="partials/header.html" on any element.
+   =========================== */
+(async function loadPartials() {
+  const slots = document.querySelectorAll('[data-partial]');
+
+  for (const slot of slots) {
+    const path = slot.getAttribute('data-partial');
+    try {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error(`Failed to load ${path}`);
+      const html = await res.text();
+      slot.outerHTML = html;
+    } catch (err) {
+      console.warn('Partial load error:', err);
+    }
+  }
+
+  // Re-run scroll check after header loads
+  const header = document.querySelector('.site-header');
+  if (header && window.scrollY > 20) header.classList.add('scrolled');
+
+  // Re-run footer year after footer loads
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
