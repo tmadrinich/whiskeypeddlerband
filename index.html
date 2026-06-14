@@ -8,24 +8,33 @@
 </head>
 <body>
 
-  <!-- HEADER (loaded from partial) -->
-  <div data-partial="partials/header.html"></div>
+  <header class="site-header">
+    <nav class="nav-inner">
+      <div class="nav-left">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="shows.html" class="nav-link">Shows</a>
+      </div>
+      <div class="nav-logo">
+        <a href="index.html">
+          <img src="assets/wpblogo.jpeg" alt="WPB Logo" class="logo-img" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="epk.html" class="nav-link">EPK</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-
-    <!-- Uncomment and fill in when you have headline copy -->
-    <!--
-    <div class="hero-content">
-      <h1>Your Headline Here</h1>
-      <p>Tagline or subtext</p>
-    </div>
-    -->
   </section>
 
-  <!-- FOOTER (loaded from partial) -->
-  <div data-partial="partials/footer.html"></div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="footer-year"></span> WPB. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
