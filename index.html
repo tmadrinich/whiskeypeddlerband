@@ -1,57 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whiskey Peddler Band | Home</title>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/wpblogo.jpeg">
-  <link rel="shortcut icon" type="image/png" href="/assets/wpblogo.jpeg">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    crossorigin="anonymous"
-  />
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WPB</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Shared Header -->
-  <div id="site-header"></div>
 
-  <!-- Hero Section -->
+  <!-- HEADER (loaded from partial) -->
+  <div data-partial="partials/header.html"></div>
+
+  <!-- HERO -->
   <section class="hero">
+    <div class="hero-bg"></div>
+
+    <!-- Uncomment and fill in when you have headline copy -->
+    <!--
     <div class="hero-content">
-      <h2>Minnesota's Favorite Redneck Rock N Roll</h2>
-      <div class="music-links">
-        <!-- Facebook -->
-        <a
-          href="https://www.facebook.com/whiskeypeddlerband"
-          target="_blank"
-          class="facebook-link"
-          aria-label="Follow on Facebook"
-        >
-          <i class="fab fa-facebook"></i>
-        </a>
-        <!-- Instagram -->
-        <a
-          href="https://www.instagram.com/whiskeypeddlerband"
-          target="_blank"
-          class="instagram-link"
-          aria-label="Follow on Instagram"
-        >
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
+      <h1>Your Headline Here</h1>
+      <p>Tagline or subtext</p>
     </div>
+    -->
   </section>
 
-  <!-- Shared Footer -->
-  <div id="site-footer"></div>
-  <!-- Main JS -->
+  <!-- FOOTER (loaded from partial) -->
+  <div data-partial="partials/footer.html"></div>
+
   <script src="js/main.js"></script>
 </body>
 </html>
