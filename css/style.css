@@ -134,23 +134,13 @@ a {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.hero .music-links .spotify-link:hover i {
-  color: #1DB954;
+.hero .music-links .facebook-link:hover i {
+  color: #1877F2;
   transform: scale(1.1);
 }
 
-.hero .music-links .apple-link:hover i {
-  color: #FA57C1;
-  transform: scale(1.1);
-}
-
-.hero .music-links .youtube-link:hover i {
-  color: #FF0000;
-  transform: scale(1.1);
-}
-
-.hero .music-links .amazon-link:hover i {
-  color: #FF9900;
+.hero .music-links .instagram-link:hover i {
+  color: #E1306C;
   transform: scale(1.1);
 }
 
@@ -260,7 +250,7 @@ p {
     position: relative;
   }
 
-  .hero-content h2 { font-size: 2.2rem; }
+  .hero-content h2 { font-size: 2rem; }
   .hero .music-links i { font-size: 48px; }
 }
 
