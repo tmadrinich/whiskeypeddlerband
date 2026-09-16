@@ -31,7 +31,7 @@
    NAV: Highlight current page
    =========================== */
 (function () {
-  const known = ['about', 'shows', 'epk', 'contact'];
+  const known = ['about', 'shows', 'press-kit', 'contact'];
   let segments = window.location.pathname.split('/').filter(Boolean);
 
   if (segments[segments.length - 1] === 'index.html') {
