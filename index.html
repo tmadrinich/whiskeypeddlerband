@@ -3,38 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WPB</title>
+  <title>Whiskey Peddler — Minnesota's Redneck Rock N Roll</title>
+  <meta name="description" content="Whiskey Peddler is a Minnesota-based Redneck Rock N Roll cover band. See upcoming shows, meet the band, and book us for your next event." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="site-header">
-    <nav class="nav-inner">
-      <div class="nav-left">
-        <a href="about.html" class="nav-link">About</a>
-        <a href="shows.html" class="nav-link">Shows</a>
-      </div>
-      <div class="nav-logo">
-        <a href="index.html">
-          <img src="assets/wpblogo.jpeg" alt="WPB Logo" class="logo-img" />
-        </a>
-      </div>
-      <div class="nav-right">
-        <a href="epk.html" class="nav-link">EPK</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </div>
-    </nav>
-  </header>
+  <script>window.SITE_BASE = "";</script>
+  <script src="js/header.js"></script>
 
   <section class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Whiskey Peddler</h1>
+      <p>Minnesota's Redneck Rock N Roll</p>
+      <div class="hero-actions">
+        <a href="shows/" class="hero-btn">Upcoming Shows</a>
+        <a href="contact/" class="hero-btn hero-btn-outline">Book Us</a>
+      </div>
+    </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-copy">&copy; <span id="footer-year"></span> WPB. All rights reserved.</p>
+  <main class="page-section">
+    <div class="highlight-grid">
+      <a class="highlight-card" href="about/">
+        <h3>About</h3>
+        <p>Meet the band</p>
+      </a>
+      <a class="highlight-card" href="shows/">
+        <h3>Shows</h3>
+        <p>See where we're playing next</p>
+      </a>
+      <a class="highlight-card" href="epk/">
+        <h3>Press Kit</h3>
+        <p>Bio, photos, videos &amp; stage plot</p>
+      </a>
     </div>
-  </footer>
+
+    <div class="social-row" style="justify-content: center; margin-top: 2.5rem;">
+      <a href="https://www.facebook.com/whiskeypeddlerband" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/whiskeypeddlerband" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </main>
+
+  <script src="js/footer.js"></script>
 
   <script src="js/main.js"></script>
 </body>
