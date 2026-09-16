@@ -16,7 +16,7 @@ document.write(`
         </a>
       </div>
       <div class="nav-right">
-        <a href="${base}epk/" class="nav-link" data-page="epk">EPK</a>
+        <a href="${base}press-kit/" class="nav-link" data-page="epk">EPK</a>
         <a href="${base}contact/" class="nav-link" data-page="contact">Contact</a>
       </div>
     </nav>
