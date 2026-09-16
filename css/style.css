@@ -84,6 +84,12 @@ img {
   opacity: 1;
 }
 
+.nav-link.active {
+  opacity: 1;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 4px;
+}
+
 .nav-logo {
   flex: 0 0 auto;
   display: flex;
@@ -187,6 +193,280 @@ img {
 }
 
 /* ===========================
+   PAGE HEADER (interior pages)
+   =========================== */
+.page-title {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 3rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.section-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.body-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.8);
+  max-width: 720px;
+  margin-bottom: 1.25rem;
+}
+
+/* ===========================
+   MEMBER GRID (About)
+   =========================== */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.member-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.5rem;
+}
+
+.member-name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.member-role {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.85rem;
+}
+
+.member-detail {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+}
+
+.member-detail strong {
+  color: #fff;
+}
+
+/* ===========================
+   ARTIST LISTS (About / EPK)
+   =========================== */
+.artist-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.artist-columns h4 {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.artist-columns ul {
+  list-style: none;
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+.artist-columns li {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: rgba(255,255,255,0.85);
+}
+
+.artist-note {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.5rem;
+}
+
+/* ===========================
+   CALENDAR EMBED (Shows)
+   =========================== */
+.calendar-wrap {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.calendar-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 650px;
+  border: 0;
+}
+
+.shows-cta {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.shows-cta a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.85rem 2rem;
+  border: 1px solid #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.shows-cta a:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ===========================
+   DOWNLOADS & VIDEOS (EPK)
+   =========================== */
+.download-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.download-link:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.video-item .video-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.video-item .video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-caption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.video-caption .video-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.video-caption .video-loc {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+}
+
+/* ===========================
+   CONTACT
+   =========================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.75rem;
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.6rem;
+}
+
+.contact-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.contact-value a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.contact-value a:hover {
+  border-color: #fff;
+}
+
+.social-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-row a {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.social-row a:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+
+/* ===========================
    RESPONSIVE
    =========================== */
 @media (max-width: 600px) {
@@ -216,5 +496,19 @@ img {
   .nav-left,
   .nav-right {
     gap: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-section {
+    padding: 6.5rem 1.25rem 3rem;
+  }
+
+  .artist-columns ul {
+    columns: 1;
+  }
+
+  .calendar-wrap iframe {
+    height: 500px;
   }
 }
