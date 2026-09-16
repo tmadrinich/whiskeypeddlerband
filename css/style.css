@@ -165,6 +165,74 @@ img {
   opacity: 0.85;
 }
 
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 0.9rem 2rem;
+  border: 1px solid #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: #fff;
+  color: #000;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hero-btn:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.hero-btn-outline {
+  background: transparent;
+  color: #fff;
+}
+
+.hero-btn-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ===========================
+   HOMEPAGE HIGHLIGHTS
+   =========================== */
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.highlight-card:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.04);
+}
+
+.highlight-card h3 {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
 /* ===========================
    MAIN CONTENT SECTIONS
    (for pages beyond the hero)
