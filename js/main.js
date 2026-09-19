@@ -1,38 +1,49 @@
 /* ===========================
-   HEADER: Scroll state
+   PARTIALS: Load header + footer
    =========================== */
-(function () {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
+(async function () {
+  const base = window.SITE_BASE || '';
 
-  function onScroll() {
-    if (window.scrollY > 20) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+  async function inject(id, file) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    try {
+      const res = await fetch(base + 'partials/' + file);
+      if (!res.ok) throw new Error(res.status);
+      el.innerHTML = (await res.text()).replaceAll('{{base}}', base);
+    } catch (err) {
+      console.error('Partial failed:', file, err);
     }
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  await Promise.all([
+    inject('site-header', 'header.html'),
+    inject('site-footer', 'footer.html'),
+  ]);
+
+  initSite();
 })();
 
-/* ===========================
-   FOOTER: Dynamic year
-   =========================== */
-(function () {
+function initSite() {
+  /* HEADER: Scroll state */
+  const header = document.querySelector('.site-header');
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* FOOTER: Dynamic year */
   const yearEl = document.getElementById('footer-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-})();
 
-/* ===========================
-   NAV: Highlight current page
-   =========================== */
-(function () {
+  /* NAV: Highlight current page */
   const known = ['about', 'shows', 'press-kit', 'contact'];
-  let segments = window.location.pathname.split('/').filter(Boolean);
+  const segments = window.location.pathname.split('/').filter(Boolean);
 
   if (segments[segments.length - 1] === 'index.html') {
     segments.pop();
@@ -46,4 +57,4 @@
       link.classList.add('active');
     }
   });
-})();
+}
