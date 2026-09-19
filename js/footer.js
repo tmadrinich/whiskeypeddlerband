@@ -1,7 +1,0 @@
-document.write(`
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-copy">&copy; <span id="footer-year"></span> WPB. All rights reserved.</p>
-    </div>
-  </footer>
-`);
