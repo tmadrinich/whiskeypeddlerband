@@ -656,3 +656,20 @@ img {
   color: #c8c8c8;
   font-size: 0.85rem;
 }
+/* Bio: text left, image right */
+.bio-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.bio-split .body-copy { margin: 0; }
+.bio-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .bio-split { grid-template-columns: 1fr; }
+}
