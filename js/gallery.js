@@ -8,7 +8,8 @@
   var REPO = 'tmadrinich/whiskeypeddlerband';
   var BRANCH = 'main';
   var FOLDER = 'assets/gallery';
-  var CACHE_KEY = 'wpb-gallery-list';
+  var CACHE_KEY = 'wpb-gallery-list-v2';
+  var CACHE_TTL = 5 * 60 * 1000; // re-check the folder every 5 minutes
 
   var containers = document.querySelectorAll('[data-gallery]');
   if (!containers.length) return;
@@ -24,8 +25,10 @@
 
   function loadList() {
     try {
-      var cached = sessionStorage.getItem(CACHE_KEY);
-      if (cached) return Promise.resolve(JSON.parse(cached));
+      var cached = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+      if (cached && cached.names && Date.now() - cached.t < CACHE_TTL) {
+        return Promise.resolve(cached.names);
+      }
     } catch (e) {}
 
     var url = 'https://api.github.com/repos/' + REPO + '/contents/' + FOLDER + '?ref=' + BRANCH;
@@ -40,7 +43,7 @@
           .filter(function (i) { return i.type === 'file' && isImage(i.name); })
           .map(function (i) { return i.name; })
           .sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); });
-        try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(names)); } catch (e) {}
+        try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), names: names })); } catch (e) {}
         return names;
       });
   }
