@@ -6,6 +6,16 @@
   <title>Shows — Whiskey Peddler</title>
   <meta name="description" content="Upcoming Whiskey Peddler shows in Minnesota and Iowa." />
   <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Move these into style.css if you prefer. Adjust colors to match your theme. -->
+  <style>
+    .events-list { max-width: 800px; margin: 0 auto 2.5rem; display: grid; gap: 0.75rem; }
+    .event-card { border: 1px solid rgba(255,255,255,0.25); padding: 1rem 1.25rem; text-align: left; }
+    .event-title { font-weight: 700; font-size: 1.1rem; }
+    .event-location, .event-time { opacity: 0.8; margin-top: 0.25rem; }
+    .events-list p { text-align: center; }
+    .calendar-wrap iframe { width: 100%; max-width: 800px; height: 600px; border: 0; }
+  </style>
 </head>
 <body>
 
@@ -15,15 +25,18 @@
     <h1 class="page-title">Shows</h1>
     <p class="page-subtitle">Where to catch us next.</p>
 
+    <!-- List view -->
+    <div id="events-container" class="events-list">
+      <p>Loading upcoming shows...</p>
+    </div>
+
+    <!-- Calendar view -->
     <div class="calendar-wrap">
-      <!--
-        Swap in your real embed: Google Calendar → Settings → select your
-        show calendar → "Integrate calendar" → copy the <iframe> src URL
-        and paste it below.
-      -->
       <iframe
-    <iframe src="https://calendar.google.com/calendar/embed?src=booking%40whiskeypeddlerband.com&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-      </iframe>
+        src="https://calendar.google.com/calendar/embed?src=booking%40whiskeypeddlerband.com&ctz=America%2FChicago"
+        scrolling="no"
+        loading="lazy"
+        title="Whiskey Peddler show calendar"></iframe>
     </div>
 
     <div class="shows-cta">
@@ -33,6 +46,63 @@
   </main>
 
   <div id="site-footer"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Calendar must be shared publicly for the API to read it.
+      const calendarId = 'booking@whiskeypeddlerband.com';
+      const apiKey = 'YOUR_GOOGLE_API_KEY';
+      const maxEvents = 20;
+
+      const container = document.getElementById('events-container');
+      const esc = s => String(s).replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
+
+      const url =
+        'https://www.googleapis.com/calendar/v3/calendars/' +
+        encodeURIComponent(calendarId) +
+        '/events?key=' + apiKey +
+        '&timeMin=' + encodeURIComponent(new Date().toISOString()) +
+        '&singleEvents=true&orderBy=startTime&maxResults=' + maxEvents;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.items || data.items.length === 0) {
+            container.innerHTML = '<p>No upcoming shows.</p>';
+            return;
+          }
+
+          const dateOpts = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+          const timeOpts = { hour: 'numeric', minute: '2-digit', hour12: true };
+
+          container.innerHTML = data.items.map(event => {
+            const allDay = !event.start.dateTime;
+            const start = new Date(event.start.dateTime || event.start.date + 'T00:00:00');
+            const end = new Date(event.end.dateTime || event.end.date + 'T00:00:00');
+
+            const dateStr = start.toLocaleDateString('en-US', dateOpts);
+            const timeStr = allDay
+              ? ''
+              : ', ' + start.toLocaleTimeString('en-US', timeOpts) +
+                ' - ' + end.toLocaleTimeString('en-US', timeOpts);
+
+            return `
+              <div class="event-card">
+                <div class="event-title">${esc(event.summary || 'Show')}</div>
+                <div class="event-location">${esc(event.location || 'Location TBD')}</div>
+                <div class="event-time">${dateStr}${timeStr}</div>
+              </div>
+            `;
+          }).join('');
+        })
+        .catch(err => {
+          console.error('Fetch error:', err);
+          container.innerHTML = '<p>Failed to load events.</p>';
+        });
+    });
+  </script>
 
   <script>window.SITE_BASE = "../";</script>
   <script src="../js/main.js"></script>
