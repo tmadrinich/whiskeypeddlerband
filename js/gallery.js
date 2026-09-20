@@ -113,8 +113,9 @@
     var limit = parseInt(container.getAttribute('data-limit'), 10);
     var shown = limit > 0 ? names.slice(0, limit) : names;
 
+    var isCarousel = container.getAttribute('data-mode') === 'carousel';
     var grid = document.createElement('div');
-    grid.className = 'gallery-grid';
+    grid.className = isCarousel ? 'gallery-track' : 'gallery-grid';
 
     shown.forEach(function (n, i) {
       var btn = document.createElement('button');
@@ -125,7 +126,7 @@
       var img = document.createElement('img');
       img.src = photos[i];
       img.alt = 'Whiskey Peddler live photo ' + (i + 1);
-      img.loading = 'lazy';
+      img.loading = isCarousel ? 'eager' : 'lazy';
       img.decoding = 'async';
 
       btn.appendChild(img);
@@ -133,7 +134,63 @@
       grid.appendChild(btn);
     });
 
-    container.appendChild(grid);
+    if (isCarousel) buildCarousel(container, grid);
+    else container.appendChild(grid);
+  }
+
+  function buildCarousel(container, track) {
+    var wrap = document.createElement('div');
+    wrap.className = 'gallery-carousel';
+
+    var prev = document.createElement('button');
+    prev.className = 'gc-arrow gc-prev';
+    prev.type = 'button';
+    prev.setAttribute('aria-label', 'Scroll left');
+    prev.innerHTML = '&#8249;';
+
+    var next = document.createElement('button');
+    next.className = 'gc-arrow gc-next';
+    next.type = 'button';
+    next.setAttribute('aria-label', 'Scroll right');
+    next.innerHTML = '&#8250;';
+
+    wrap.appendChild(prev);
+    wrap.appendChild(track);
+    wrap.appendChild(next);
+    container.appendChild(wrap);
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var interval = parseInt(container.getAttribute('data-interval'), 10) || 4000;
+    var timer = null;
+
+    function step() { return Math.max(track.clientWidth * 0.8, 200); }
+    function atStart() { return track.scrollLeft <= 4; }
+    function atEnd() { return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; }
+
+    function advance() {
+      if (atEnd()) track.scrollTo({ left: 0, behavior: 'smooth' });
+      else track.scrollBy({ left: step(), behavior: 'smooth' });
+    }
+    function back() {
+      if (atStart()) track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      else track.scrollBy({ left: -step(), behavior: 'smooth' });
+    }
+
+    function start() { if (!timer && !reduce) timer = setInterval(advance, interval); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    prev.addEventListener('click', back);
+    next.addEventListener('click', advance);
+
+    // Pause while the visitor is interacting
+    wrap.addEventListener('mouseenter', stop);
+    wrap.addEventListener('mouseleave', start);
+    wrap.addEventListener('focusin', stop);
+    wrap.addEventListener('focusout', start);
+    wrap.addEventListener('touchstart', stop, { passive: true });
+    wrap.addEventListener('touchend', function () { setTimeout(start, 4000); }, { passive: true });
+
+    start();
   }
 
   containers.forEach(function (c) {
