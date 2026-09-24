@@ -541,17 +541,28 @@ img {
 }
 
 .social-row a {
-  padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(255,255,255,0.25);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
 }
 
-.social-row a:hover {
-  border-color: #fff;
-  background: rgba(255,255,255,0.06);
+.social-row svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+  transition: fill 0.2s ease;
+}
+
+.social-row .icon-facebook:hover svg {
+  fill: #1877F2;
+}
+
+.social-row .icon-instagram:hover svg {
+  fill: #E4405F;
 }
 
 /* ===========================
