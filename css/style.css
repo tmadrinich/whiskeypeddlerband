@@ -544,15 +544,15 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
 }
 
 .social-row svg {
-  width: 44px;
-  height: 44px;
+  width: 22px;
+  height: 22px;
   fill: #fff;
   transition: fill 0.2s ease;
 }
