@@ -397,6 +397,8 @@ img {
    CALENDAR EMBED (Shows)
    =========================== */
 .calendar-wrap {
+  width: 800px;
+  margin: 0 auto;
   border: 1px solid rgba(255,255,255,0.12);
   background: #0a0a0a;
   overflow: hidden;
@@ -404,7 +406,7 @@ img {
 
 .calendar-wrap iframe {
   display: block;
-  width: 100%;
+  width: 800px;
   height: 650px;
   border: 0;
 }
@@ -774,5 +776,12 @@ img {
 
   .calendar-wrap iframe {
     height: 500px;
+  }
+}
+
+@media (max-width: 640px) {
+  .calendar-wrap,
+  .calendar-wrap iframe {
+    width: 100%;
   }
 }
