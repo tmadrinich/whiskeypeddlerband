@@ -792,3 +792,20 @@ img {
   border-radius: 4px;
   margin-bottom: 12px;
 }
+.member-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.member-card {
+  flex: 0 1 calc(33.333% - 24px);
+  min-width: 200px;
+  text-align: center;
+}
+
+.member-photo {
+  display: block;
+  margin: 0 auto 12px;
+}
