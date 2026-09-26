@@ -122,6 +122,10 @@ img {
   background-repeat: no-repeat;
 }
 
+.hero-bg-img {
+  display: none; /* only shown on mobile, see media query below */
+}
+
 /* subtle dark vignette so any text over the hero stays legible */
 .hero-bg::after {
   content: '';
@@ -755,7 +759,9 @@ img {
 
   /* Show the full hero photo on mobile instead of cropping the sides.
      The image and the text/buttons are stacked (image on top, text
-     below) instead of the text overlaying the image like on desktop. */
+     below) instead of the text overlaying the image like on desktop.
+     A real <img> is used here (see hero-bg-img) so the photo always
+     renders at its true aspect ratio — no guessing, no letterboxing. */
   .hero {
     height: auto;
     min-height: 0;
@@ -768,10 +774,13 @@ img {
     position: relative;
     inset: auto;
     width: 100%;
-    aspect-ratio: 3 / 2; /* adjust if the photo's true ratio differs */
-    background-size: contain;
-    background-position: center center;
-    background-color: #000;
+    background-image: none;
+  }
+
+  .hero-bg-img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .hero-content {
