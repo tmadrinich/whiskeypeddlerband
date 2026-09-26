@@ -752,6 +752,13 @@ img {
   .gallery-track .gallery-item {
     height: 220px;
   }
+
+  /* Show the full hero photo on mobile instead of cropping the sides */
+  .hero-bg {
+    background-size: contain;
+    background-position: center center;
+    background-color: #000;
+  }
 }
 
 @media (max-width: 600px) {
