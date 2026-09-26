@@ -753,7 +753,16 @@ img {
     height: 220px;
   }
 
-  /* Show the full hero photo on mobile instead of cropping the sides */
+  /* Show the full hero photo on mobile instead of cropping the sides,
+     and size the hero to the image's own aspect ratio so there's no
+     leftover black gap below it. Adjust the ratio below if the photo's
+     actual dimensions differ slightly. */
+  .hero {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    min-height: 0;
+  }
+
   .hero-bg {
     background-size: contain;
     background-position: center center;
