@@ -305,11 +305,15 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
 }
 
 .bio-split .body-copy {
   margin: 0;
+}
+
+.bio-text-stack .section-heading:first-child {
+  margin-top: 0;
 }
 
 .bio-image {
