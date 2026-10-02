@@ -873,3 +873,34 @@ img {
     width: 100%;
   }
 }
+/* ===========================
+   PLACES WE'VE PLAYED: one line per listing
+   =========================== */
+.artist-columns.places-columns {
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 4rem;
+  justify-content: start;
+}
+
+.places-columns ul {
+  columns: 1;
+}
+
+.places-columns li {
+  white-space: nowrap;
+}
+
+/* Stack the two lists on tablets and phones */
+@media (max-width: 860px) {
+  .artist-columns.places-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* Smallest phones: shrink text so the longest line still fits */
+@media (max-width: 480px) {
+  .places-columns li {
+    font-size: 0.78rem;
+  }
+}
