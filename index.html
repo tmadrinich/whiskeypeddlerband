@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Whiskey Peddler — Minnesota's Redneck Rock N Roll</title>
   <meta name="description" content="Whiskey Peddler is a Minnesota-based Redneck Rock N Roll cover band. See upcoming shows, meet the band, and book us for your next event." />
+  <link rel="canonical" href="https://whiskeypeddlerband.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Whiskey Peddler" />
+  <meta property="og:title" content="Whiskey Peddler — Minnesota's Redneck Rock N Roll" />
+  <meta property="og:description" content="Whiskey Peddler is a Minnesota-based Redneck Rock N Roll cover band. See upcoming shows, meet the band, and book us for your next event." />
+  <meta property="og:url" content="https://whiskeypeddlerband.com/" />
+  <meta property="og:image" content="https://whiskeypeddlerband.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Whiskey Peddler, Minnesota's Redneck Rock N Roll band" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&display=swap" />
@@ -35,6 +46,15 @@
   </section>
 
   <main class="page-section">
+    <section class="home-shows">
+      <h2 class="section-heading">Next Shows</h2>
+      <div class="events-list" data-shows data-limit="3" data-empty="New dates coming soon.">
+        <p>Loading upcoming shows...</p>
+      </div>
+      <div class="home-shows-cta">
+        <a href="shows/" class="hero-btn hero-btn-outline">All Shows</a>
+      </div>
+    </section>
     <div class="highlight-grid">
       <a class="highlight-card" href="about/">
         <h3>About</h3>
@@ -49,11 +69,13 @@
         <p>Bio, photos, videos &amp; stage plot</p>
       </a>
     </div>
+
   </main>
 
   <div id="site-footer"></div>
 
   <script>window.SITE_BASE = "";</script>
   <script src="js/main.js"></script>
+  <script src="js/shows.js"></script>
 </body>
 </html>

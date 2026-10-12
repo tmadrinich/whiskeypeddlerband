@@ -1018,3 +1018,158 @@ img {
     font-size: 0.78rem;
   }
 }
+
+/* ===========================
+   BOOKING DETAILS (EPK + Contact)
+   =========================== */
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fact-card {
+  background: var(--back-room);
+  border: 1px solid var(--gunmetal);
+  padding: 1.5rem;
+}
+
+.fact-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 0.5rem;
+}
+
+.fact-value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: var(--track-display);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.fact-note {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* ===========================
+   REVIEWS (EPK)
+   =========================== */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.review-card {
+  background: var(--back-room);
+  border: 1px solid var(--gunmetal);
+  border-top: 3px solid var(--cream);
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.review-card blockquote {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--white);
+}
+
+.review-card figcaption {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ash);
+  line-height: 1.5;
+}
+
+.review-card figcaption strong {
+  display: block;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+.review-source {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ash);
+}
+
+.review-source a {
+  color: var(--cream);
+  border-bottom: 1px solid var(--cream);
+}
+
+/* ===========================
+   CONTACT: what to include
+   =========================== */
+.include-list {
+  list-style: none;
+  max-width: 720px;
+  margin-bottom: 1.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.include-list li {
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.include-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.5rem;
+  height: 2px;
+  background: var(--orange);
+}
+
+/* ===========================
+   HOMEPAGE: next shows
+   =========================== */
+.home-shows {
+  margin-bottom: 4rem;
+}
+
+.home-shows .section-heading {
+  margin-top: 0;
+}
+
+.home-shows .events-list {
+  max-width: none;
+  margin-bottom: 1.5rem;
+}
+
+.home-shows-cta {
+  text-align: center;
+}
+
+.fact-note a {
+  color: var(--cream);
+  border-bottom: 1px solid var(--cream);
+}
+
+@media (max-width: 700px) {
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
