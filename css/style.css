@@ -150,7 +150,7 @@ img {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/WPB%20Hero%202.jpg');
+  background-image: url('/assets/hero-2400.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

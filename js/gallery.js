@@ -126,7 +126,7 @@
       var img = document.createElement('img');
       img.src = photos[i];
       img.alt = 'Whiskey Peddler live photo ' + (i + 1);
-      img.loading = isCarousel ? 'eager' : 'lazy';
+      img.loading = isCarousel && i < 3 ? 'eager' : 'lazy';
       img.decoding = 'async';
 
       btn.appendChild(img);
