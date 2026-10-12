@@ -1179,9 +1179,19 @@ img {
    =========================== */
 .about-photo {
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  object-position: 50% 26%;
   border: 1px solid var(--gunmetal);
   margin-bottom: 2rem;
+}
+
+@media (max-width: 700px) {
+  .about-photo {
+    aspect-ratio: 2.5 / 1;
+    object-position: 50% 27%;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .about-facts {
