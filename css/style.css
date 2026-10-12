@@ -1173,3 +1173,33 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===========================
+   ABOUT: group photo, facts, CTA
+   =========================== */
+.about-photo {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--gunmetal);
+  margin-bottom: 2rem;
+}
+
+.about-facts {
+  margin-top: 2rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.shows-cta .cta-row .hero-btn {
+  margin-top: 0;
+}
+
+.member-grid + .shows-cta {
+  margin-top: 3.5rem;
+}
