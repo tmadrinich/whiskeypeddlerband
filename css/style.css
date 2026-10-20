@@ -1213,3 +1213,21 @@ img {
 .member-grid + .shows-cta {
   margin-top: 3.5rem;
 }
+
+/* ===========================
+   EPK BOOKING LINE: keep phone whole; stack email + phone on phones
+   =========================== */
+.booking-phone {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .booking-contact .booking-line {
+    display: block;
+    width: fit-content;
+  }
+
+  .booking-contact .booking-join {
+    display: none;
+  }
+}
