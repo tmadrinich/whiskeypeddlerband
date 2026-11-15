@@ -1,0 +1,4 @@
+# Local-only files: keep out of the public repo and off the live site
+whiskey-peddler-song-list.csv
+.claude/
+.DS_Store

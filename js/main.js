@@ -41,8 +41,31 @@ function initSite() {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* NAV: Phone menu toggle */
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (header && toggle && menu) {
+    const setOpen = (open) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Close' : 'Menu';
+      header.classList.toggle('menu-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    // Close if the window grows past the phone layout
+    window.matchMedia('(min-width: 821px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+
   /* NAV: Highlight current page */
-  const known = ['about', 'shows', 'press-kit', 'contact'];
+  const known = ['about', 'shows', 'songs', 'private-events', 'press-kit', 'contact'];
   const segments = window.location.pathname.split('/').filter(Boolean);
 
   if (segments[segments.length - 1] === 'index.html') {

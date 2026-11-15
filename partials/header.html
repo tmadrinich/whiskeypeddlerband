@@ -1,8 +1,10 @@
 <header class="site-header">
-  <nav class="nav-inner">
+  <nav class="nav-inner" aria-label="Main">
+    <button type="button" class="nav-toggle nav-link" aria-expanded="false" aria-controls="nav-menu">Menu</button>
     <div class="nav-left">
       <a href="{{base}}about/" class="nav-link" data-page="about">About</a>
       <a href="{{base}}shows/" class="nav-link" data-page="shows">Shows</a>
+      <a href="{{base}}songs/" class="nav-link" data-page="songs">Songs</a>
     </div>
     <div class="nav-logo">
       <a href="{{base}}./" data-page="home">
@@ -10,8 +12,21 @@
       </a>
     </div>
     <div class="nav-right">
+      <a href="{{base}}private-events/" class="nav-link" data-page="private-events">Private Events</a>
       <a href="{{base}}press-kit/" class="nav-link" data-page="press-kit">EPK</a>
       <a href="{{base}}contact/" class="nav-link" data-page="contact">Contact</a>
     </div>
+    <div class="nav-cta">
+      <a href="{{base}}contact/" class="nav-book">Book Us</a>
+    </div>
   </nav>
+  <!-- Phone menu: same links as above, stacked. Shown only under 820px. -->
+  <div class="nav-menu" id="nav-menu" hidden>
+    <a href="{{base}}about/" class="nav-link" data-page="about">About</a>
+    <a href="{{base}}shows/" class="nav-link" data-page="shows">Shows</a>
+    <a href="{{base}}songs/" class="nav-link" data-page="songs">Songs</a>
+    <a href="{{base}}private-events/" class="nav-link" data-page="private-events">Private Events</a>
+    <a href="{{base}}press-kit/" class="nav-link" data-page="press-kit">EPK</a>
+    <a href="{{base}}contact/" class="nav-link" data-page="contact">Contact</a>
+  </div>
 </header>

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Whiskey Peddler</title>
-  <meta name="description" content="Book Whiskey Peddler for your bar, backyard, or festival." />
+  <title>Book Whiskey Peddler — Minnesota Party Band for Festivals &amp; Weddings</title>
+  <meta name="description" content="Book Whiskey Peddler, Minnesota's Redneck Rock N Roll cover band, for your bar, festival, street dance, wedding or private party. Send your date and event details." />
   <link rel="canonical" href="https://whiskeypeddlerband.com/contact/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Whiskey Peddler" />
-  <meta property="og:title" content="Contact — Whiskey Peddler" />
-  <meta property="og:description" content="Book Whiskey Peddler for your bar, backyard, or festival." />
+  <meta property="og:title" content="Book Whiskey Peddler — Minnesota Party Band for Festivals &amp; Weddings" />
+  <meta property="og:description" content="Book Whiskey Peddler, Minnesota's Redneck Rock N Roll cover band, for your bar, festival, street dance, wedding or private party. Send your date and event details." />
   <meta property="og:url" content="https://whiskeypeddlerband.com/contact/" />
   <meta property="og:image" content="https://whiskeypeddlerband.com/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -29,8 +29,88 @@
 
   <main class="page-section">
     <h1 class="page-title">Contact</h1>
-    <p class="page-subtitle">Bars, backyard parties, festivals — reach out and let's talk dates.</p>
+    <p class="page-subtitle">Bars, festivals, street dances, weddings and private parties. Send your date and event details and we'll get back to you.</p>
 
+    <!-- Thank-you message: shown by the script at the bottom when the URL has ?success=true -->
+    <div id="success-message" class="form-success" hidden>
+      <h2>Inquiry Sent</h2>
+      <p>Thanks. Your booking inquiry is in. We'll reply to the email you gave us. If it's time-sensitive, call <a href="tel:15072008199">507-200-8199</a>.</p>
+    </div>
+
+    <div id="booking-form-wrap">
+      <form id="booking-form" class="booking-form" action="https://api.staticforms.dev/submit" method="post">
+        <!-- StaticForms API key: submissions go to the email on that StaticForms account -->
+        <input type="hidden" name="apiKey" value="sf_18e8a7ff0596a0c0f5dc5132" />
+        <input type="hidden" name="subject" value="New Whiskey Peddler Booking Inquiry" />
+        <!-- Reply-to: StaticForms uses the "email" field below -->
+        <input type="hidden" name="redirectTo" value="https://whiskeypeddlerband.com/contact/?success=true" />
+
+        <!-- Honeypot: hidden from people, filled in by bots -->
+        <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form-field">
+          <label for="bf-name">Name <span class="req">*</span></label>
+          <input id="bf-name" type="text" name="name" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="bf-email">Email <span class="req">*</span></label>
+          <input id="bf-email" type="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="bf-phone">Phone</label>
+          <input id="bf-phone" type="tel" name="phone" autocomplete="tel" />
+        </div>
+        <div class="form-field">
+          <label for="bf-date">Event date <span class="req">*</span></label>
+          <input id="bf-date" type="date" name="event_date" required />
+        </div>
+        <div class="form-field">
+          <label for="bf-type">Event type <span class="req">*</span></label>
+          <select id="bf-type" name="event_type" required>
+            <option value="" selected disabled>Choose one</option>
+            <option value="Bar" data-key="bar">Bar</option>
+            <option value="Festival or town celebration" data-key="festival">Festival or town celebration</option>
+            <option value="Private party" data-key="private-party">Private party</option>
+            <option value="Wedding" data-key="wedding">Wedding</option>
+            <option value="Corporate" data-key="corporate">Corporate</option>
+            <option value="Other" data-key="other">Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="bf-venue">Venue &amp; city <span class="req">*</span></label>
+          <input id="bf-venue" type="text" name="venue_and_city" required />
+        </div>
+        <div class="form-field">
+          <label for="bf-set">Set length</label>
+          <select id="bf-set" name="set_length">
+            <option value="" selected>Choose one</option>
+            <option>2 hours</option>
+            <option>3 hours</option>
+            <option>4 hours</option>
+            <option>Unplugged acoustic</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="bf-budget">Budget range <span class="optional">(optional)</span></label>
+          <input id="bf-budget" type="text" name="budget_range" />
+        </div>
+        <div class="form-field full">
+          <label for="bf-heard">How did you hear about us?</label>
+          <input id="bf-heard" type="text" name="heard_about_us" />
+        </div>
+        <div class="form-field full">
+          <label for="bf-details">Details</label>
+          <textarea id="bf-details" name="message" rows="6" placeholder="Load-in and start time, indoor or outdoor, anything else we should know."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="hero-btn">Send Booking Inquiry</button>
+        </div>
+      </form>
+      <p class="form-note"><span class="req">*</span> Required.</p>
+    </div>
+
+    <h2 class="section-heading">Email or Call</h2>
     <div class="contact-grid">
       <div class="contact-card">
         <div class="contact-label">Booking Email</div>
@@ -74,12 +154,67 @@
       <li>Set length: 2 to 4 hours, or an Unplugged acoustic set</li>
       <li>Load-in and start time, if you have them</li>
     </ul>
-    <a href="mailto:booking@whiskeypeddlerband.com?subject=Booking%20Inquiry%20-%20Whiskey%20Peddler&amp;body=Event%20date%3A%0AVenue%20/%20city%3A%0AEvent%20type%20%28bar%2C%20festival%2C%20private%20event%2C%20wedding%29%3A%0ASet%20length%20%282-4%20hours%29%20or%20Unplugged%20acoustic%20set%3A%0ALoad-in%20/%20start%20time%3A%0AYour%20name%20%26%20phone%3A%0A" class="hero-btn">Email a Booking Inquiry</a>
+    <a href="mailto:booking@whiskeypeddlerband.com?subject=Booking%20Inquiry%20-%20Whiskey%20Peddler&amp;body=Event%20date%3A%0AVenue%20/%20city%3A%0AEvent%20type%20%28bar%2C%20festival%2C%20private%20event%2C%20wedding%29%3A%0ASet%20length%20%282-4%20hours%29%20or%20Unplugged%20acoustic%20set%3A%0ALoad-in%20/%20start%20time%3A%0AYour%20name%20%26%20phone%3A%0A" class="hero-btn hero-btn-outline">Email a Booking Inquiry</a>
+
+    <h2 class="section-heading" id="faq">Booking FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>How far will you travel?</h3>
+        <p>We're based in the Twin Cities and play across Minnesota and Iowa. <span class="todo">TODO: confirm how far you'll travel and whether travel or lodging is charged.</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you carry liability insurance? Can you provide a COI?</h3>
+        <p><span class="todo">TODO: confirm insurance coverage and whether a certificate of insurance is available on request.</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you require a deposit and a contract?</h3>
+        <p><span class="todo">TODO: confirm deposit amount, when the balance is due, and that every show gets a contract.</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>What power and stage size do you need?</h3>
+        <p>We're self-contained: we bring our own PA, lights and in-ear monitor rack. If you're providing sound, our <a href="../assets/Whiskey%20Peddler%20Stage%20Plot.pdf" target="_blank" rel="noopener">stage plot</a> has the full input list. <span class="todo">TODO: confirm power requirements and minimum stage size. The stage plot doesn't state either.</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>What if it rains?</h3>
+        <p><span class="todo">TODO: confirm the rain policy for outdoor shows (cover requirements, rain location, cancellation).</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>How far ahead should we book?</h3>
+        <p>We're booking 2027 festivals and events now. <span class="todo">TODO: confirm typical lead time for festivals, weddings and bar dates.</span></p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you take requests?</h3>
+        <p>Our <a href="../songs/">song list</a> shows what we play. <span class="todo">TODO: confirm the request policy (advance requests, requests at the show, learning new songs).</span></p>
+      </div>
+    </div>
   </main>
 
   <div id="site-footer"></div>
 
   <script>window.SITE_BASE = "../";</script>
   <script src="../js/main.js"></script>
+  <script>
+    /* BOOKING FORM: thank-you swap + event-type preselect */
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+
+      // After StaticForms redirects back with ?success=true, swap the form for the thank-you message.
+      if (params.get('success') === 'true') {
+        var wrap = document.getElementById('booking-form-wrap');
+        var success = document.getElementById('success-message');
+        if (wrap) wrap.hidden = true;
+        if (success) success.hidden = false;
+        return;
+      }
+
+      // Preselect the event type from links like /contact/?type=wedding
+      var type = params.get('type');
+      var select = document.getElementById('bf-type');
+      if (type && select) {
+        var option = select.querySelector('option[data-key="' + type.replace(/[^a-z-]/g, '') + '"]');
+        if (option) select.value = option.value;
+      }
+    })();
+  </script>
 </body>
 </html>
