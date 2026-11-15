@@ -2,6 +2,9 @@
    SHOWS: upcoming dates from the band's public Google Calendar
    Usage: <div data-shows></div>               -> up to 20 shows
           <div data-shows data-limit="3"></div> -> next 3 only
+   The same list is also written into the HTML once a day by
+   scripts/build_shows.py (so Google can read it); this script then
+   refreshes it live. Keep card() here and card_html() there in step.
    =========================== */
 (function () {
   // Calendar must be shared publicly for the API to read it.
@@ -58,9 +61,13 @@
     '&singleEvents=true&orderBy=startTime&maxResults=' + maxNeeded;
 
   fetch(url)
-    .then(function (res) { return res.json(); })
+    .then(function (res) {
+      if (!res.ok) throw new Error('Calendar responded ' + res.status);
+      return res.json();
+    })
     .then(function (data) {
-      var items = data.items || [];
+      if (!data.items) throw new Error('Calendar response had no event list');
+      var items = data.items;
       containers.forEach(function (el) {
         var limit = parseInt(el.getAttribute('data-limit'), 10) || 20;
         var list = items.slice(0, limit);
@@ -72,6 +79,9 @@
     .catch(function (err) {
       console.error('Shows fetch error:', err);
       containers.forEach(function (el) {
+        // The page ships with a list written by scripts/build_shows.py.
+        // If the live refresh fails, leave that list alone.
+        if (el.querySelector('.event-card')) return;
         el.innerHTML = '<p>Failed to load events.</p>';
       });
     });

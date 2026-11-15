@@ -1,0 +1,43 @@
+name: Update show dates
+
+# Once a day, read the band's Google Calendar and write the upcoming shows
+# (and Event data for Google) into shows/index.html and index.html.
+# Only commits when something actually changed.
+
+on:
+  schedule:
+    - cron: "23 11 * * *"   # every day, about 5:23 am Central (6:23 am in summer)
+  workflow_dispatch:        # "Run workflow" button on the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_shows.py"
+      - ".github/workflows/update-shows.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-shows
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write shows into the pages
+        run: python3 scripts/build_shows.py
+
+      - name: Commit if the shows changed
+        run: |
+          if git diff --quiet; then
+            echo "No change to show dates."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add shows/index.html index.html
+          git commit -m "Update show dates from calendar"
+          git push
