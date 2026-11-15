@@ -1796,3 +1796,8 @@ button.hero-btn {
     font-size: 1rem;
   }
 }
+
+/* Links that jump to a heading (e.g. /contact/#faq) stop below the fixed nav */
+[id] {
+  scroll-margin-top: 100px;
+}
