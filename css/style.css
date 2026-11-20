@@ -13,6 +13,8 @@
   --back-room: #111111;  /* cards, gallery tiles, raised sections */
   --gunmetal: #333333;   /* borders, dividers, table rules */
   --ash: #C8C8C8;        /* captions, counters, secondary text */
+  --iron: #666666;       /* form field borders: 3.7:1 on black (meets 3:1 for inputs) */
+  --paper: #EDEDED;      /* long-read quote text: 17.9:1, less glare than pure white */
 
   /* Type */
   --font-display: 'Big Shoulders Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -196,6 +198,7 @@ img {
 
 .hero-content p {
   margin-top: 1rem;
+  color: var(--cream); /* tagline is the hero's accent phrase */
   font-size: clamp(0.9rem, 2vw, 1.15rem);
   font-weight: 500;
   letter-spacing: var(--track-label);
@@ -557,7 +560,8 @@ img {
 
 .event-location {
   margin-top: 0.3rem;
-  color: var(--white);
+  font-size: 0.95rem;
+  color: var(--ash);
 }
 
 .event-time {
@@ -1081,7 +1085,6 @@ img {
 .review-card {
   background: var(--back-room);
   border: 1px solid var(--gunmetal);
-  border-top: 3px solid var(--cream);
   padding: 1.75rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -1092,7 +1095,19 @@ img {
 .review-card blockquote {
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--white);
+  color: var(--paper);
+}
+
+/* One Cream quote mark replaces the old Cream top bar */
+.review-card blockquote::before {
+  content: "\201C";
+  display: block;
+  height: 1.9rem;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 0.85;
+  color: var(--cream);
 }
 
 .review-card figcaption {
@@ -1107,7 +1122,7 @@ img {
 .review-card figcaption strong {
   display: block;
   font-weight: 500;
-  color: var(--cream);
+  color: var(--white);
 }
 
 .review-source {
@@ -1347,17 +1362,33 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem 2rem;
-  background: var(--back-room);
-  border: 1px solid var(--gunmetal);
-  border-left: 3px solid var(--orange);
-  padding: 1.5rem 1.75rem;
+  /* One solid Shell Orange field per page: black type only (7.1:1) */
+  background: var(--orange);
+  color: var(--black);
+  padding: 1.75rem 2rem;
   margin-bottom: 2rem;
+}
+
+.booking-banner .hero-btn {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.booking-banner .hero-btn:hover {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--cream);
+}
+
+.booking-banner a:focus-visible {
+  outline-color: var(--black);
 }
 
 .booking-banner-text {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: var(--track-display);
   line-height: 1.05;
   text-transform: uppercase;
@@ -1378,18 +1409,32 @@ img {
 
 .stats-strip li {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   padding: 1.25rem 0.75rem;
   border-left: 1px solid var(--gunmetal);
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-  font-weight: 800;
-  letter-spacing: var(--track-display);
-  line-height: 1.05;
   text-align: center;
+}
+
+/* Cream on the figure only; label in white */
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+  letter-spacing: var(--track-display);
+  line-height: 1;
   text-transform: uppercase;
   color: var(--cream);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--white);
 }
 
 .stats-strip li:first-child {
@@ -1480,7 +1525,7 @@ img {
   min-height: 48px;
   padding: 0.75rem 0.9rem;
   background: var(--black);
-  border: 1px solid var(--gunmetal);
+  border: 1px solid var(--iron);
   border-radius: 0;
   color: var(--white);
   font-family: inherit;
